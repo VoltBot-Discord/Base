@@ -6,8 +6,6 @@ const path= require("path");
 const wait = require("system-sleep");
 const errors = require("../../utils/errors.js");
 const config = require("../../config.json");
-var commandsclass = config.commands.class;
-
 
 module.exports.run = async (bot, message, args, logs_id, prefixes, footer, premium, language) => {
     if(message.guild.me.hasPermission("MANAGE_MESSAGES")) message.delete({ timeout: 1 });
