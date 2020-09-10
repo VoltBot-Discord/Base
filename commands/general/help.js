@@ -97,18 +97,6 @@ module.exports.run = async (bot, message, args, logs_id, prefixes, footer, premi
 				}
 				return 0;
 			}).map(x => `\`${x.help.name}\``).join(", "))
-		if (data.customCommands.commands.length > 0) {
-			embed.addField(`・${message.guild.name} (${data.customCommands.commands.length})`, data.customCommands.commands.sort(async (a, b) => {
-				if (a.name < b.name) {
-					return -1;
-				}
-				if (a.name > b.name) {
-					return 1;
-				}
-				return 0;
-			}).map(x => `\`${x.name}\``).join(", "))
-		}
-
 			embed.addField(`\u200B`, `${bot.config.broadcast}[GitHub](https://github.com/VoltBot-Discord)・[Support](${bot.config.support.invitation})・[Site web](${bot.config.dashboard.link})・[Invitation](https://discord.com/oauth2/authorize?client_id=${bot.user.id}&scope=bot&permissions=1006108159)`)
 			/*
 			.attachFiles(['./animation.gif'])
@@ -160,17 +148,6 @@ module.exports.run = async (bot, message, args, logs_id, prefixes, footer, premi
 				}
 				return 0;
 			}).map(x => `\`${x.help.name}\``).join(", "))
-			if (data.customCommands.commands.length > 0) {
-				embed.addField(`・${message.guild.name} (${data.customCommands.commands.length})`, data.customCommands.commands.sort(async (a, b) => {
-					if (a.name < b.name) {
-						return -1;
-					}
-					if (a.name > b.name) {
-						return 1;
-					}
-					return 0;
-				}).map(x => `\`${x.name}\``).join(", "))
-			}
 			embed.addField(`\u200B`, `${bot.config.broadcast}[GitHub](https://github.com/VoltBot-Discord)・[Support](${bot.config.support.invitation})・[Website](${bot.config.dashboard.link})・[Invitation](https://discord.com/oauth2/authorize?client_id=${bot.user.id}&scope=bot&permissions=1006108159)`)
 			/*
 			.attachFiles(['./animation.gif'])
