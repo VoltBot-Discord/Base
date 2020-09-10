@@ -114,65 +114,11 @@ module.exports = class {
                 const args1 = message.content.slice(prefixes.length).split(/ +/);
                 const commandName = args1.shift().toLowerCase();
                 let args = messageArray.slice(1);
-                let cCommand = data.customCommands.commands.find(c => c.name == commandName)
-                if (cCommand) {
-                    let logs2 = bot.database.models.logs.create({
-                        type: "CMD",
-                        guild: message.guild ? message.guild.id : false,
-                        channel: message.channel ? message.channel.id : "DM",
-                        author: message.author.id,
-                        content: message.cleanContent,
-                        timeout: Date.now() - startAt,
-                        tts: message.tts,
-                        shard: bot.shard.id,
-                    })
-
-                    if (config.status == "disabled" && !config.owners.find(x => x.id === message.author.id)) {
-                        return errors.disabledBot(message, language, footer)
-                    }
-                    if (user.botBlacklisted && !config.owners.find(x => x.id === message.author.id)) {
-                        return errors.blacklist(message, user.botBlacklisted.reason, language, footer);
-                    }
-                    if (message.channel.permissionsFor(message.member).has("MENTION_EVERYONE") && message.content.includes("@everyone")) {
-                        message.channel.stopTyping()
-                        return errors.DoNotEveryone(message, footer, language);
-                    }
-                    if (!message.guild.me.hasPermission("EMBED_LINKS")) {
-                        message.channel.stopTyping()
-                        return errors.nopermsend(message, language);
-                    }
-                    message.channel.startTyping()
-                    if (data.deleteCommandMessage) {
-                        if (message.guild.me.hasPermission("MANAGE_MESSAGES")) message.delete({
-                            timeout: 2000
-                        });
-                    }
-                    message.channel.send(decodeURI(cCommand.answer, 'base64'))
-                    message.channel.stopTyping()
-                }
                 let commandfile = bot.commands.get(commandName) || bot.commands.find(cmd => cmd.help.aliases && cmd.help.aliases.includes(commandName));
                 if (commandfile) {
 
-                    if (data.deleteCommandMessage) {
-                        if (message.guild.me.hasPermission("MANAGE_MESSAGES")) message.delete({
-                            timeout: 2000
-                        });
-                    }
-
                     data.commandsMade++;
                     data.save()
-
-                    if (data.ignoredChannels.includes(message.channel.id) && commandName !== "ignore") {
-                        message.channel.send(language == "fr" ? "Impossible d'executer des commandes dans ce salon." : "You can't run commands here.").then(async (msg) => {
-                            msg.delete({
-                                timeout: 3000
-                            })
-                            if (message.deletable) message.delete({
-                                timeout: 3000
-                            });
-                        })
-                        return
-                    }
 
                     message.channel.startTyping()
 
