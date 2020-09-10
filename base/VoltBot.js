@@ -79,7 +79,8 @@ class VoltBot extends Client {
 	get defaultPrefix() {
 		return this.config.prefix
 	};
-
+	
+	// Save config
 	async saveConfig() {
 		fs.writeFile(`${__dirname}/../config.json`, JSON.stringify(this.config, null, 3), function (err) {
 			if (err) {
@@ -88,12 +89,13 @@ class VoltBot extends Client {
 		})
 		return true;
 	}
+
+	// Simple async foreach
 	async asyncForEach(array, callback) {
 		for (let index = 0; index < array.length; index++) {
 			await callback(array[index], index, array);
 		}
 	};
-	// resolve json data from database, parse it & return it
 	async resolveGuildData(id) {
 		let data = await this.database.models.guilds.findOrCreate({
 			where: {
@@ -204,11 +206,6 @@ class VoltBot extends Client {
 				delete require.cache[require.resolve(`../events/${file}`)];
 			});
 		}
-
-		if (args.includes("dashboard")) {
-			this.dashboard = require("../dashboard/app.js")
-		}
-
 		if (args.includes("commands")) {
 			const directories = await readdir("./commands/");
 			directories.filter(d => !d.endsWith("disabled")).forEach(async (dir) => {
