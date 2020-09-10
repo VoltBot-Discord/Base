@@ -22,6 +22,10 @@ module.exports = async (Sequelize, volt) => {
                 type: Sequelize.INTEGER,
                 defaultValue: 0
             },
+            premium: {
+                type: Sequelize.BOOLEAN,
+                defaultValue: false
+            },
             footer: {
                 type: Sequelize.TEXT,
                 defaultValue: `VoltBot`,
