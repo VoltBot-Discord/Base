@@ -16,8 +16,8 @@ module.exports.run = async (bot, message, args, logs_id, prefixes, footer, premi
     try {
         //let props = require(``);
         console.log(command)
-        delete require.cache[require.resolve(`/root/VoltBot/Commands/commands/${command.help.class}/${command.help.name}`)];
-        let props = require(`/root/VoltBot/Commands/commands/${command.help.class}/${command.help.name}`);
+        delete require.cache[require.resolve(`../${command.help.class}/${command.help.name}`)];
+        let props = require(`../${command.help.class}/${command.help.name}`);
         bot.commands.delete(props)
        props.help.class = command.help.class
 
