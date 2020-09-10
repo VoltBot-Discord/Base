@@ -33,6 +33,10 @@ The base of the Official VoltBot
 # 📰・Instructions
 - Download files
 - Make ``npm install``
+
+- Setup your [MySQL](https://dev.mysql.com/doc/mysql-getting-started/en/) database.
+
+- Don't forget to edit the config.json with your database login details & the bot token
 - And there is !
 
 # 💻・Developers
