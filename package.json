@@ -53,7 +53,7 @@
     "snekfetch": "^4.0.4",
     "superagent": "^5.3.1",
     "system-sleep": "^1.3.6",
-    "systeminformation": "^4.26.10",
+    "systeminformation": "^5.3.1",
     "twemoji": "^13.0.1",
     "zoro-api": "^0.3.5"
   },
